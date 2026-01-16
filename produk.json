@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "nama": "Kaos Polos Pink",
+    "harga": 59900,
+    "deskripsi": "Kaos katun lembut dan nyaman untuk sehari-hari.",
+    "gambar": "https://down-id.img.susercontent.com/file/id-11134207-7r98y-lowcr6edjafh7d.webp"
+  },
+  {
+    "id": 2,
+    "nama": "Kaos Aerostreet Snoopy & Woodstock",
+    "harga": 99900,
+    "deskripsi": "Kaos kolaborasi cocok untuk nongkrong.",
+    "gambar": "https://down-id.img.susercontent.com/file/sg-11134201-824hf-mdye5itx0etef4.webp"
+  }
+]

@@ -1,0 +1,38 @@
+<?php
+header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
+$file = 'produk.json';
+
+$method = $_SERVER['REQUEST_METHOD'];
+
+switch ($method) {
+  case 'GET':
+    echo file_get_contents($file);
+    break;
+
+  case 'POST':
+    $data = json_decode(file_get_contents("php://input"), true);
+    $produk = json_decode(file_get_contents($file), true);
+    $data['id'] = time();
+    $produk[] = $data;
+    file_put_contents($file, json_encode($produk, JSON_PRETTY_PRINT));
+    echo json_encode(["status" => "success"]);
+    break;
+
+  case 'DELETE':
+    $id = $_GET['id'] ?? null;
+    if ($id) {
+      $produk = json_decode(file_get_contents($file), true);
+      $produk = array_filter($produk, fn($p) => $p['id'] != $id);
+      file_put_contents($file, json_encode(array_values($produk), JSON_PRETTY_PRINT));
+      echo json_encode(["status" => "deleted"]);
+    }
+    break;
+
+  default:
+    echo json_encode(["message" => "Method not allowed"]);
+}
+?>

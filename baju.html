@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Baju Online</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="baju.style.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo"><span><i>TOKO BAJOE</i></span></div>
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Best Seller</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Kaos Polos</a></li>
+            <li><a href="#">Hoodie</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Kategori</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Kaos</a></li>
+            <li><a href="#">Hoodie</a></li>
+            <li><a href="#">Kaos Polo</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="Login">
+        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Gambar Slider -->
+  <div class="wrapper">
+    <div class="image-track">
+      <div class="image-slide">
+        <img src="https://cdn.idntimes.com/content-images/community/2024/02/pexels-displaced-by-design-13558946-b8bac0077b69de900bb7fa0a9fedbf01-3f8656515be08821d2c9b15f860cb5f1.jpg" alt="Katalog Slide 1">
+      </div>
+    </div>
+  </div>
+
+  <!-- Produk -->
+  <section class="produk-container">
+    <div class="produk">
+      <img src="https://down-id.img.susercontent.com/file/id-11134207-7r98y-lowcr6edjafh7d.webp" alt="Kaos Pink">
+      <h3>Kaos Polos Pink</h3>
+      <p class="harga">Rp 59.900</p>
+      <p>Kaos katun lembut dan nyaman untuk sehari-hari.</p>
+      <button>Beli Sekarang</button>
+    </div>
+
+    <div class="produk">
+      <img src="https://down-id.img.susercontent.com/file/sg-11134201-824hf-mdye5itx0etef4.webp" alt="Snoopy">
+      <h3>Kaos Aerostreet Snoopy & Woodstock</h3>
+      <p class="harga">Rp 99.900</p>
+      <p>Kaos kolaborasi cocok untuk nongkrong.</p>
+      <button>Beli Sekarang</button>
+    </div>
+
+    <div class="produk">
+      <img src="https://down-id.img.susercontent.com/file/id-11134207-7ra0g-mcbvn0jt174255.webp" alt="Hoodie">
+      <h3>Hoodie Minimalizm Coklat Sweater</h3>
+      <p class="harga">Rp 179.900</p>
+      <p>Hoodie tebal dan hangat dengan kantong depan.</p>
+      <button>Beli Sekarang</button>
+    </div>
+
+    <div class="produk">
+      <img src="https://down-id.img.susercontent.com/file/id-11134207-81ztl-mf3ijyxf0rux43.webp" alt="Kaos Polo Grey">
+      <h3>Kaos Polo Grey</h3>
+      <p class="harga">Rp 69.900</p>
+      <p>Kaos Polo cocok untuk tampil kasual.</p>
+      <button>Beli Sekarang</button>
+    </div>
+  </section>
+
+  <!-- POPUP -->
+  <div id="popup" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img id="popup-img" src="" alt="">
+      <h3 id="popup-nama"></h3>
+      <p id="popup-harga"></p>
+      <p id="popup-deskripsi"></p>
+
+      <div class="popup-options">
+        <label>Warna:</label>
+        <div class="warna-list">
+          <button class="warna" data-color="Pink" style="background-color: pink;"></button>
+          <button class="warna" data-color="Abu" style="background-color: rgb(0, 217, 255);"></button>
+          <button class="warna" data-color="Hitam" style="background-color: black;"></button>
+          <button class="warna" data-color="Hitam" style="background-color: burlywood;"></button>
+        </div>
+      </div>
+
+      <div class="popup-jumlah">
+        <label>Jumlah:</label>
+        <div class="jumlah-box">
+          <button id="kurang">-</button>
+          <input type="number" id="jumlah" value="1" min="1">
+          <button id="tambah">+</button>
+        </div>
+      </div>
+
+      <p id="popup-total" style="font-weight: bold; margin-top: 10px;">Total: Rp 0</p>
+
+      <div class="popup-buttons">
+        <button class="buy-now" id="btnWa">Beli Sekarang via wa</button>
+        <button class="buy-now" id="btnShopee">Beli Sekarang via shopee</button>
+      </div>
+
+      <div id="admin-tools" class="popup-buttons" style="display:none;">
+  <button id="btnEdit" class="buy-now" style="background:#0d6efd">✏️ Edit Produk</button>
+  <button id="btnHapus" class="buy-now" style="background:#dc3545">🗑 Hapus Produk</button>
+</div>
+
+
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Katalog Baju Online | Dibuat oleh kelompok I</p>
+  </footer>
+
+  <script>
+  // ===== MODE ADMIN (GLOBAL) =====
+  const params = new URLSearchParams(window.location.search);
+  const isAdmin = params.get("admin") === "1";
+  const adminKey = params.get("key");
+
+  function adminAktif() {
+    return isAdmin && adminKey === "ADMIN123";
+  }
+
+  console.log("ADMIN MODE:", adminAktif());
+
+
+    const buttons = document.querySelectorAll(".produk button");
+    const popup = document.getElementById("popup");
+    const closeBtn = document.querySelector(".close");
+    const popupImg = document.getElementById("popup-img");
+    const popupNama = document.getElementById("popup-nama");
+    const popupHarga = document.getElementById("popup-harga");
+    const popupDeskripsi = document.getElementById("popup-deskripsi");
+    const popupTotal = document.getElementById("popup-total");
+    const inputJumlah = document.getElementById("jumlah");
+    const btnTambah = document.getElementById("tambah");
+    const btnKurang = document.getElementById("kurang");
+
+    let hargaProduk = 0;
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const produk = btn.parentElement;
+        const imgSrc = produk.querySelector("img").src;
+        const nama = produk.querySelector("h3").innerText;
+        const hargaText = produk.querySelector(".harga").innerText;
+        const deskripsi = produk.querySelectorAll("p")[1].innerText;
+
+        hargaProduk = parseInt(hargaText.replace(/[^\d]/g, ""));
+        inputJumlah.value = 1;
+        updateTotal();
+
+        popupImg.src = imgSrc;
+        popupNama.innerText = nama;
+        popupHarga.innerText = hargaText;
+        popupDeskripsi.innerText = deskripsi;
+        popup.style.display = "flex";
+
+        // TAMPILKAN ADMIN TOOLS JIKA ADMIN
+const adminTools = document.getElementById("admin-tools");
+if (adminAktif()) {
+  adminTools.style.display = "block";
+} else {
+  adminTools.style.display = "none";
+}
+
+// ===== ADMIN BUTTON ACTION (FINAL & AMAN) =====
+if (adminAktif()) {
+
+  const btnEdit = document.getElementById("btnEdit");
+  const btnHapus = document.getElementById("btnHapus");
+
+  if (btnEdit) {
+    btnEdit.onclick = () => {
+      window.location.href =
+        "admin/edit-produk.php?admin=1&key=ADMIN123";
+    };
+  }
+
+  if (btnHapus) {
+    btnHapus.onclick = () => {
+      if (confirm("Yakin hapus produk ini?")) {
+        window.location.href =
+          "admin/hapus-produk.php?admin=1&key=ADMIN123";
+      }
+    };
+  }
+}
+
+
+
+      });
+    });
+
+    closeBtn.addEventListener("click", () => popup.style.display = "none");
+    window.addEventListener("click", (e) => { if (e.target === popup) popup.style.display = "none"; });
+
+    function updateTotal() {
+      const jumlah = parseInt(inputJumlah.value);
+      const total = hargaProduk * jumlah;
+      popupTotal.innerText = `Total: Rp ${total.toLocaleString("id-ID")}`;
+    }
+
+    btnTambah.addEventListener("click", () => {
+      inputJumlah.value = parseInt(inputJumlah.value) + 1;
+      updateTotal();
+    });
+
+    btnKurang.addEventListener("click", () => {
+      if (inputJumlah.value > 1) {
+        inputJumlah.value = parseInt(inputJumlah.value) - 1;
+        updateTotal();
+      }
+    });
+
+    inputJumlah.addEventListener("input", updateTotal);
+
+
+    // ==== FUNGSI BELI SEKARANG VIA WHATSAPP ====
+    const tombolBeliSekarang = document.querySelector(".buy-now");
+
+    tombolBeliSekarang.addEventListener("click", () => {
+      const namaProduk = popupNama.innerText;
+      const harga = popupHarga.innerText;
+      const jumlah = parseInt(inputJumlah.value);
+      const total = popupTotal.innerText.replace("Total: ", "");
+  
+    // Ambil warna yang sedang dipilih
+      const warnaAktif = document.querySelector(".warna.active");
+      const warna = warnaAktif ? warnaAktif.dataset.color : "Tidak dipilih";
+
+    // 🟢 Ganti nomor WA 
+      const nomorToko = "6285850642259"; 
+
+    // Buat isi pesan WhatsApp
+    const pesan = 
+`Halo Admin *TOKO BAJOE*! 
+Saya ingin memesan produk berikut:
+
+      *Nama Produk:* ${namaProduk}
+      *Harga Satuan:* ${harga}
+      *Warna:* ${warna}
+      *Jumlah:* ${jumlah}
+      *Total harga:${total}*
+
+Mohon konfirmasi ketersediaan produk ini. Terima kasih `;
+
+    const encodedPesan = encodeURIComponent(pesan);
+    window.open(`https://wa.me/${nomorToko}?text=${encodedPesan}`, "_blank");
+    });
+
+    // ==== FUNGSI BELI SEKARANG VIA SHOPEE ====
+document.getElementById("btnShopee").addEventListener("click", () => {
+  const linkShopeeMap = {
+    "Kaos Polos Pink": "https://shopee.co.id/Aerostreet-T-Shirt-Reguler-Polos-Medium-Kaos-T-Shirt-Tshirt-KCAAA-i.177400943.23173954359?extraParams=%7B%22display_model_id%22%3A204439648955%2C%22model_selection_logic%22%3A3%7D&sp_atk=1fd1ba46-3e59-4ab5-82fa-da11de5850a0&xptdk=1fd1ba46-3e59-4ab5-82fa-da11de5850a0",
+    "Kaos Aerostreet Snoopy": "https://shopee.co.id/Aerostreet-T-Shirt-Snoopy-Woodstock-Sports-Baby-Blue-Kaos-T-Shirt-ABBAA-i.177400943.41565466932?extraParams=%7B%22display_model_id%22%3A266275491536%7D",
+    "Hoodie Minimalizm Coklat Sweater": "https://shopee.co.id/Aerostreet-Hoodie-Minimalizm-Coklat-Sweater-Jumper-CAAAA-i.177400943.22119236456?extraParams=%7B%22display_model_id%22%3A165489627204%2C%22model_selection_logic%22%3A3%7D&sp_atk=39721039-7546-4258-92c1-1e615d38196f&xptdk=39721039-7546-4258-92c1-1e615d38196f",
+    "Kaos Polo Grey": "https://shopee.co.id/Aerostreet-Boxy-Polo-Shirt-Zean-Hitam-Man-Kaos-Kerah-QFAAA-i.177400943.44121508755?extraParams=%7B%22display_model_id%22%3A370008891253%7D"
+  };
+
+  const namaProduk = popupNama.innerText.trim();
+
+  // Cari link yang cocok berdasarkan nama produk popup
+  const linkShopee = Object.entries(linkShopeeMap)
+    .find(([key]) => namaProduk.includes(key))?.[1];
+
+  if (linkShopee) {
+    window.open(linkShopee, "_blank");
+  } else {
+    alert("Link Shopee belum tersedia untuk produk ini.");
+  }
+});
+
+/* ================= ADMIN BUTTON ACTION ================= */
+
+const btnEdit = document.getElementById("btnEdit");
+const btnHapus = document.getElementById("btnHapus");
+
+if (btnEdit) {
+  btnEdit.addEventListener("click", () => {
+    if (!adminAktif()) return;
+    window.location.href = "admin/edit-produk.php?admin=1&key=ADMIN123";
+  });
+}
+
+if (btnHapus) {
+  btnHapus.addEventListener("click", () => {
+    if (!adminAktif()) return;
+    if (confirm("Yakin hapus produk ini?")) {
+      window.location.href = "admin/hapus-produk.php?admin=1&key=ADMIN123";
+    }
+  });
+}
+
+
+
+  </script>
+</body>
+</html>
